@@ -585,7 +585,7 @@ PACKAGE_STRING='tsquare 1.0'
 PACKAGE_BUGREPORT='jeffrey.bullard@nist.gov'
 PACKAGE_URL=''
 
-ac_unique_file="src/diffgeom.cc"
+ac_unique_file="src/tsquare.cc"
 # Factoring default headers for most tests.
 ac_includes_default="\
 #include <stdio.h>
@@ -5458,8 +5458,100 @@ $as_echo "#define HAVE_BOOST /**/" >>confdefs.h
 fi
 
 
-#AC_CHECK_LIB(gmp, __gmpz_init2, ,[AC_MSG_ERROR("Linking GMP failed.")])
-#AC_CHECK_LIB(mpfr, mpfr__init2, ,[AC_MSG_ERROR("Linking MPFR failed.")])
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for __gmpz_init2 in -lgmp" >&5
+$as_echo_n "checking for __gmpz_init2 in -lgmp... " >&6; }
+if ${ac_cv_lib_gmp___gmpz_init2+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lgmp  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char __gmpz_init2 ();
+int
+main ()
+{
+return __gmpz_init2 ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_gmp___gmpz_init2=yes
+else
+  ac_cv_lib_gmp___gmpz_init2=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_gmp___gmpz_init2" >&5
+$as_echo "$ac_cv_lib_gmp___gmpz_init2" >&6; }
+if test "x$ac_cv_lib_gmp___gmpz_init2" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBGMP 1
+_ACEOF
+
+  LIBS="-lgmp $LIBS"
+
+else
+  as_fn_error $? "\"Linking GMP failed.\"" "$LINENO" 5
+fi
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for mpfr_init2 in -lmpfr" >&5
+$as_echo_n "checking for mpfr_init2 in -lmpfr... " >&6; }
+if ${ac_cv_lib_mpfr_mpfr_init2+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lmpfr  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char mpfr_init2 ();
+int
+main ()
+{
+return mpfr_init2 ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_mpfr_mpfr_init2=yes
+else
+  ac_cv_lib_mpfr_mpfr_init2=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_mpfr_mpfr_init2" >&5
+$as_echo "$ac_cv_lib_mpfr_mpfr_init2" >&6; }
+if test "x$ac_cv_lib_mpfr_mpfr_init2" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBMPFR 1
+_ACEOF
+
+  LIBS="-lmpfr $LIBS"
+
+else
+  as_fn_error $? "\"Linking MPFR failed.\"" "$LINENO" 5
+fi
+
 
 
 
@@ -5485,7 +5577,7 @@ for ac_cgal_iterate in $ac_cgal_dirs ; do
 	CPPFLAGS="$CPPFLAGS $CGAL_CPPFLAGS $BOOST_CPPFLAGS"
 	export CPPFLAGS
 
-	CGAL_LDFLAGS="-L$ac_cgal_iterate/lib -lCGAL -lCGAL_Core -lCGAL_ImageIO -lgmp -lmpfr"
+	CGAL_LDFLAGS="-L$ac_cgal_iterate/lib -lCGAL -lCGAL_Core -lCGAL_ImageIO"
 	LDFLAGS_SAVED="$LDFLAGS"
 	LDFLAGS="$LDFLAGS $CGAL_LDFLAGS"
 	export LDFLAGS

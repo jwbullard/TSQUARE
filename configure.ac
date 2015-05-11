@@ -4,7 +4,7 @@
 AC_PREREQ([2.69])
 AC_INIT([tsquare], [1.0], [jeffrey.bullard@nist.gov])
 AM_INIT_AUTOMAKE
-AC_CONFIG_SRCDIR([src/diffgeom.cc])
+AC_CONFIG_SRCDIR([src/tsquare.cc])
 AC_CONFIG_HEADERS([config.h])
 
 # Tell autoconf where to find macros
@@ -35,8 +35,8 @@ AC_PROG_RANLIB
 # Checks for libraries
 AC_CHECK_LIB([m],[atan2])
 AX_BOOST_BASE([1.58], [], [AC_MSG_ERROR([Sorry, boost not found])])
-#AC_CHECK_LIB(gmp, __gmpz_init2, ,[AC_MSG_ERROR("Linking GMP failed.")])
-#AC_CHECK_LIB(mpfr, mpfr__init2, ,[AC_MSG_ERROR("Linking MPFR failed.")])
+AC_CHECK_LIB(gmp, __gmpz_init2, ,[AC_MSG_ERROR("Linking GMP failed.")])
+AC_CHECK_LIB(mpfr, mpfr_init2, ,[AC_MSG_ERROR("Linking MPFR failed.")])
 AX_LIB_CGAL_CORE([], [AC_MSG_ERROR([Sorry, cgal not found])])
 
 # Checks for library functions.

@@ -15,3 +15,8 @@ boost:  www.boost.org/users/download/
 
 Users should follow all installation instructions for these libraries and test that
 they are working prior to attempting to install TSQUARE.
+
+Also, as also described in the INSTALL file, the ./configure command for this build
+should be:
+
+LDFLAGS=-L/full/path/to/cgal/libraries ./configure --with-cgal=/full/path/to/cgal/libraries
